@@ -60,7 +60,7 @@
             <li class="nav-section-label">Manage</li>
             <li><a href="/users">Users</a></li>
             <li><a href="/technicians">Technicians</a></li>
-            <li><a href="/categories"><span class="nav-icon">️</span> Categories</a></li>
+            <li><a href="/categories">Categories</a></li>
             <li><a href="/sla_policies">SLA Policies</a></li>
             {% elif session['role'] == 'technician' %}
             <li><a href="/technician_dashboard">Dashboard</a></li>
@@ -152,7 +152,7 @@
                 {% if session['role'] in ['admin', 'technician'] %}
                 <div class="card">
                     <div class="card-header">
-                        <h3>️ Update Ticket</h3>
+                        <h3>Update Ticket</h3>
                     </div>
                     <div class="card-body">
                         <form id="update-ticket-form">

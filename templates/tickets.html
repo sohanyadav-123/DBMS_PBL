@@ -27,7 +27,7 @@
             <li class="nav-section-label">Manage</li>
             <li><a href="/users">Users</a></li>
             <li><a href="/technicians">Technicians</a></li>
-            <li><a href="/categories"><span class="nav-icon">️</span> Categories</a></li>
+            <li><a href="/categories">Categories</a></li>
             <li><a href="/sla_policies">SLA Policies</a></li>
             {% elif session['role'] == 'technician' %}
             <li><a href="/technician_dashboard">Dashboard</a></li>
@@ -55,7 +55,7 @@
             {% if session['role'] == 'user' or session['role'] == 'admin' %}
             <div class="card" id="create-ticket-card">
                 <div class="card-header">
-                    <h3>️ Create New Ticket</h3>
+                    <h3>Create New Ticket</h3>
                 </div>
                 <div class="card-body">
                     <form id="create-ticket-form">
@@ -83,7 +83,7 @@
                             <label>Description</label>
                             <textarea id="desc-input" class="form-control" rows="4" placeholder="Describe your issue in detail..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width:auto;"> Submit Ticket</button>
+                        <button type="submit" class="btn btn-primary" style="width:auto;">Submit Ticket</button>
                     </form>
                 </div>
             </div>

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${a.warranty_end ? new Date(a.warranty_end).toLocaleDateString() : '-'}</td>
                         <td><span class="badge ${getBadgeClass(a.status)}">${a.status}</span></td>
                         <td>
-                            <button onclick="deleteAsset(${a.asset_id})" class="btn" style="background:var(--danger); color:white; padding:0.25rem 0.5rem; font-size:0.875rem;">Delete</button>
+                            <button onclick="deleteAsset(${a.asset_id})" class="btn-danger-sm">Delete</button>
                         </td>
                     </tr>
                 `);

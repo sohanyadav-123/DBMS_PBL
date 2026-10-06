@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <td><span class="badge ${getBadgeClass(t.priority)}">${t.priority}</span></td>
                         <td><span class="badge ${getBadgeClass(t.status)}">${t.status}</span></td>
                         <td>${new Date(t.created_at).toLocaleDateString()}</td>
-                        <td><a href="/ticket_details/${t.ticket_id}" class="btn" style="background:#e2e3e5; padding:0.25rem 0.5rem; font-size:0.875rem;">View</a></td>
+                        <td><a href="/ticket_details/${t.ticket_id}" class="btn-action">View</a></td>
                     </tr>
                 `);
             });
