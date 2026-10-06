@@ -64,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
     cancel.addEventListener('click', closeLogoutModal);
     backdrop.addEventListener('click', closeLogoutModal);
 
-    // Intercept logout clicks
+    // Intercept logout clicks (but NOT the confirm button inside the modal)
     document.addEventListener('click', (e) => {
         const logoutLink = e.target.closest('a[href="/logout"], .logout-btn[href="/logout"]');
-        if (logoutLink) {
+        if (logoutLink && logoutLink.id !== 'logout-confirm') {
             e.preventDefault();
             openLogoutModal();
         }
