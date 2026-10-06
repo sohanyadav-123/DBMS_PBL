@@ -20,7 +20,7 @@ This is a college-level DBMS project designed to demonstrate database design, ER
 The database consists of the following core entities:
 - **Users (1:N Tickets)**
 - **Technicians (1:N Tickets)**
-- **Assets (1:N Tickets)**
+- **Assets (1:N Tickets)** - Including special tracking for Laptops, Monitors, and Networking gear.
 - **Categories (1:N Tickets)**
 - **SLA Policies**
 - **Tickets** (Contains foreign keys to Users, Assets, Technicians, Categories)
