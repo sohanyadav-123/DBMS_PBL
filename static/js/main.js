@@ -32,4 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         return map[statusOrPriority] || 'badge-open';
     };
+
+    // Global logout confirmation
+    document.addEventListener('click', (e) => {
+        const logoutLink = e.target.closest('a[href="/logout"]');
+        if (logoutLink) {
+            if (!confirm('Are you sure you want to log out?')) {
+                e.preventDefault();
+            }
+        }
+    });
 });
