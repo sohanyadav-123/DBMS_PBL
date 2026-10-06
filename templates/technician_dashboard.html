@@ -12,7 +12,6 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-brand">
-                <div class="sidebar-brand-icon">🔧</div>
                 <div>
                     <h3>IT Helpdesk</h3>
                     <small>Technician Portal</small>
@@ -21,17 +20,17 @@
         </div>
         <ul class="sidebar-nav">
             <li class="nav-section-label">Main</li>
-            <li><a href="/technician_dashboard" class="active"><span class="nav-icon">⚡</span> Dashboard</a></li>
-            <li><a href="/tickets"><span class="nav-icon">🎫</span> Assigned Tickets</a></li>
+            <li><a href="/technician_dashboard" class="active">Dashboard</a></li>
+            <li><a href="/tickets">Assigned Tickets</a></li>
         </ul>
         <div class="sidebar-footer">
-            <a href="/logout" class="logout-btn"><span>🚪</span> Sign Out</a>
+            <a href="/logout" class="logout-btn">Sign Out</a>
         </div>
     </div>
 
     <div class="main-content">
         <div class="topbar">
-            <h2>🔧 Technician Dashboard</h2>
+            <h2> Technician Dashboard</h2>
             <div class="topbar-user">
                 <span class="user-dot"></span>
                 {{ session['name'] }}
@@ -45,7 +44,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3>🎫 My Assigned Tickets</h3>
+                    <h3> My Assigned Tickets</h3>
                     <a href="/tickets" class="btn btn-outline btn-sm">View All →</a>
                 </div>
                 <div class="table-responsive">

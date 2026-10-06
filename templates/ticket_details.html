@@ -45,7 +45,7 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-brand">
-                <div class="sidebar-brand-icon">🛡️</div>
+                <div class="sidebar-brand-icon">️</div>
                 <div>
                     <h3>IT Helpdesk</h3>
                     <small>{{ session['role'] | capitalize }} Portal</small>
@@ -55,30 +55,30 @@
         <ul class="sidebar-nav">
             <li class="nav-section-label">Main</li>
             {% if session['role'] == 'admin' %}
-            <li><a href="/admin_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
-            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> Tickets</a></li>
-            <li><a href="/assets"><span class="nav-icon">💻</span> Assets</a></li>
+            <li><a href="/admin_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">Tickets</a></li>
+            <li><a href="/assets">Assets</a></li>
             <li class="nav-section-label">Manage</li>
-            <li><a href="/users"><span class="nav-icon">👥</span> Users</a></li>
-            <li><a href="/technicians"><span class="nav-icon">🔧</span> Technicians</a></li>
-            <li><a href="/categories"><span class="nav-icon">🏷️</span> Categories</a></li>
-            <li><a href="/sla_policies"><span class="nav-icon">📋</span> SLA Policies</a></li>
+            <li><a href="/users">Users</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/categories"><span class="nav-icon">️</span> Categories</a></li>
+            <li><a href="/sla_policies">SLA Policies</a></li>
             {% elif session['role'] == 'technician' %}
-            <li><a href="/technician_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
-            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> Assigned Tickets</a></li>
+            <li><a href="/technician_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">Assigned Tickets</a></li>
             {% else %}
-            <li><a href="/user_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
-            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> My Tickets</a></li>
+            <li><a href="/user_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">My Tickets</a></li>
             {% endif %}
         </ul>
         <div class="sidebar-footer">
-            <a href="/logout" class="logout-btn"><span>🚪</span> Sign Out</a>
+            <a href="/logout" class="logout-btn">Sign Out</a>
         </div>
     </div>
 
     <div class="main-content">
         <div class="topbar">
-            <h2>🎫 Ticket <span id="t-id">{{ ticket_id }}</span></h2>
+            <h2> Ticket <span id="t-id">{{ ticket_id }}</span></h2>
             <div class="topbar-user">
                 <span class="user-dot"></span>
                 {{ session['name'] }}
@@ -90,7 +90,7 @@
             <div>
                 <div class="card">
                     <div class="card-header">
-                        <h3>📝 Description</h3>
+                        <h3> Description</h3>
                         <span id="t-status" class="badge"></span>
                     </div>
                     <div class="card-body">
@@ -100,7 +100,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>✅ Resolution Notes</h3>
+                        <h3> Resolution Notes</h3>
                     </div>
                     <div class="card-body">
                         <p id="t-res"></p>
@@ -112,7 +112,7 @@
             <div>
                 <div class="card">
                     <div class="card-header">
-                        <h3>ℹ️ Ticket Info</h3>
+                        <h3>Ticket Info</h3>
                     </div>
                     <div class="card-body">
                         <div class="detail-row">
@@ -153,7 +153,7 @@
                 {% if session['role'] in ['admin', 'technician'] %}
                 <div class="card">
                     <div class="card-header">
-                        <h3>✏️ Update Ticket</h3>
+                        <h3>️ Update Ticket</h3>
                     </div>
                     <div class="card-body">
                         <form id="update-ticket-form">
@@ -180,7 +180,7 @@
                                 <label>Resolution Notes</label>
                                 <textarea id="update-resolution" class="form-control" rows="3" placeholder="Describe the resolution..."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+                            <button type="submit" class="btn btn-primary"> Save Changes</button>
                         </form>
                     </div>
                 </div>

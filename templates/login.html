@@ -34,7 +34,6 @@
             margin-top: 2rem;
             font-size: 0.72rem;
             color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
         }
     </style>
 </head>
@@ -43,7 +42,6 @@
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-logo">
-                <div class="logo-icon">🛡️</div>
                 <h1>IT Helpdesk</h1>
                 <p>Asset &amp; Ticket Management</p>
             </div>
@@ -51,13 +49,13 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">⚠ {{ message }}</div>
+            <div class="alert alert-{{ category }}"> {{ message }}</div>
             {% endfor %}
             {% endif %}
             {% endwith %}
 
             <div class="hint-box">
-                💡 Use email: <span>admin@example.com</span> or any registered user account to sign in.
+                Use email: <span>admin@company.com</span> with password <span>admin123</span> to sign in.
             </div>
 
             <form method="POST" action="/login">
