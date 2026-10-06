@@ -15,6 +15,7 @@ A web-based IT support management application built as a DBMS course project. Th
 - [Login Credentials](#login-credentials)
 - [Project Structure](#project-structure)
 - [SQL Concepts Used](#sql-concepts-used)
+- [Project Presentations](#project-presentations)
 
 ---
 
@@ -238,15 +239,17 @@ All user accounts use the password `user123`. All technician accounts use `tech1
 
 ```
 DBMS_pbl/
-├── app.py                  # Flask application — all routes and API endpoints
-├── database.sql            # Database schema and sample data
-├── requirements.txt        # Python dependencies
-├── .env.example            # Environment variable template
-├── .env                    # Local configuration (do not commit)
+├── app.py                                      # Flask application — all routes and API endpoints
+├── database.sql                                # Database schema and sample data
+├── requirements.txt                            # Python dependencies
+├── .env.example                                # Environment variable template
+├── .env                                        # Local configuration (do not commit)
+├── IT_Helpdesk_Asset_DBMS_0111.pptx            # Presentation 1: System overview & requirements
+├── DBMS_ER_Schema_Query_Presentation_0222.pptx # Presentation 2: ER schema & SQL queries
 ├── static/
-│   ├── css/style.css       # Application stylesheet
-│   └── js/                 # JavaScript — main.js, dashboard.js, tickets.js, assets.js
-└── templates/              # Jinja2 HTML templates
+│   ├── css/style.css                           # Application stylesheet
+│   └── js/                                     # JavaScript — main.js, dashboard.js, tickets.js, assets.js
+└── templates/                                  # Jinja2 HTML templates
     ├── login.html
     ├── admin_dashboard.html
     ├── technician_dashboard.html
@@ -273,6 +276,15 @@ DBMS_pbl/
 | **Password Hashing** | Werkzeug scrypt hashing — no plaintext passwords stored |
 | **Role-based Access** | Session checks on every protected route |
 | **Subqueries / Filters** | Filtered ticket views per user role |
+
+---
+
+## Project Presentations
+
+| File | Description |
+|------|-------------|
+| `IT_Helpdesk_Asset_DBMS_0111.pptx` | **Part 1:** Problem statement, user roles, system architecture, and module breakdown |
+| `DBMS_ER_Schema_Query_Presentation_0222.pptx` | **Part 2:** Entity-Relationship (ER) model, relational schema mapping, normalization, and SQL query analysis |
 
 ---
 
