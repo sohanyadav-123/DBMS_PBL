@@ -84,24 +84,24 @@ CREATE TABLE IF NOT EXISTS maintenance (
 -- INSERT SAMPLE DATA
 -- Passwords are: admin123, user123, tech123
 INSERT INTO users (name, email, password, role, department) VALUES 
-('Sohan',     'sohan@company.com',     'scrypt:32768:8:1$wUIptNiIDCTYP6XD$ece73c548ae39834f94f0e7558f475489f4d0ca759d7ba0b86db6f46c32aec325e9bbc6ff7df982a826748df0dc31078e0f95bab7423e3209a7d3b97a0b3e9e7', 'admin', 'IT'),
-('Kiran',     'kiran@company.com',     'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'HR'),
-('Ram',       'ram@company.com',       'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'Sales'),
-('Rock',      'rock@company.com',      'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'Marketing'),
-('Alsabur',   'alsabur@company.com',   'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'Finance'),
-('Soumya',    'soumya@company.com',    'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'Operations'),
-('Samyuktha', 'samyuktha@company.com', 'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'HR'),
-('Abhinay',   'abhinay@company.com',   'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'Sales'),
-('Tanush',    'tanush@company.com',    'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'IT'),
-('Sriram',    'sriram@company.com',    'scrypt:32768:8:1$jBqlImWsBklGZb0y$fd59cd1cd3e92874d30cf16717a2818972abcde63ff811fc24119f9c6727edff470d24e547d0429cc427036e1dd6b37ec4e4a25164711ae71c16ff05f5d243f2', 'user', 'Research');
+('Sohan',     'sohan@company.com',     'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'admin', 'IT'),
+('Anish',     'anish@company.com',     'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'HR'),
+('Ram',       'ram@company.com',       'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'Sales'),
+('Rock',      'rock@company.com',      'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'Marketing'),
+('Alsabur',   'alsabur@company.com',   'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'Finance'),
+('Soumya',    'soumya@company.com',    'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'Operations'),
+('Samyuktha', 'samyuktha@company.com', 'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'HR'),
+('Abhinay',   'abhinay@company.com',   'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'Sales'),
+('Tanush',    'tanush@company.com',    'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'IT'),
+('Sriram',    'sriram@company.com',    'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef', 'user', 'Research');
 
 
 INSERT INTO technicians (name, specialization, email, password) VALUES 
-('Tom Fixer', 'Hardware', 'technician@company.com', 'scrypt:32768:8:1$9ccnQ20CCbAOR4I2$f29e19da13298edad095e40d78feac20efc11d5b7315fd16dace9275fb4f6478c85c6f218c7f161cd4adf60f81f4933939337d2b64bf51a9ebe02ee0ee7f6c30'),
-('Sarah Network', 'Network', 'sarah.n@company.com', 'scrypt:32768:8:1$9ccnQ20CCbAOR4I2$f29e19da13298edad095e40d78feac20efc11d5b7315fd16dace9275fb4f6478c85c6f218c7f161cd4adf60f81f4933939337d2b64bf51a9ebe02ee0ee7f6c30'),
-('Mike Software', 'Software', 'mike.s@company.com', 'scrypt:32768:8:1$9ccnQ20CCbAOR4I2$f29e19da13298edad095e40d78feac20efc11d5b7315fd16dace9275fb4f6478c85c6f218c7f161cd4adf60f81f4933939337d2b64bf51a9ebe02ee0ee7f6c30'),
-('Jenny Printer', 'Printer', 'jenny.p@company.com', 'scrypt:32768:8:1$9ccnQ20CCbAOR4I2$f29e19da13298edad095e40d78feac20efc11d5b7315fd16dace9275fb4f6478c85c6f218c7f161cd4adf60f81f4933939337d2b64bf51a9ebe02ee0ee7f6c30'),
-('David Server', 'Server', 'david.s@company.com', 'scrypt:32768:8:1$9ccnQ20CCbAOR4I2$f29e19da13298edad095e40d78feac20efc11d5b7315fd16dace9275fb4f6478c85c6f218c7f161cd4adf60f81f4933939337d2b64bf51a9ebe02ee0ee7f6c30');
+('Tom Fixer', 'Hardware', 'technician@company.com', 'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef'),
+('Sarah Network', 'Network', 'sarah.n@company.com', 'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef'),
+('Mike Software', 'Software', 'mike.s@company.com', 'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef'),
+('Jenny Printer', 'Printer', 'jenny.p@company.com', 'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef'),
+('David Server', 'Server', 'david.s@company.com', 'scrypt:32768:8:1$GrQ34yJoVaJglOFf$3d2df8ddd5430006e48f0d895a92214b6ddb6aab95cb8563f0c7dd45b5cad17667f664ca125283eb6b06c85553efb03d202194ee7f3a460c1f37c30fe15c57ef');
 
 INSERT INTO categories (name, description) VALUES 
 ('Hardware', 'Physical devices like monitors, keyboards, mice'),

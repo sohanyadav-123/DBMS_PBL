@@ -234,11 +234,11 @@ The following demo accounts are pre-loaded by `database.sql`:
 
 | Role | Email | Password |
 |------|-------|----------|
-| Admin | `sohan@company.com` | `admin123` |
-| Technician | `technician@company.com` | `tech123` |
-| User | `kiran@company.com` | `user123` |
+| Admin | `sohan@company.com` | `123` |
+| Technician | `technician@company.com` | `123` |
+| User | `anish@company.com` | `123` |
 
-All user accounts use the password `user123`. All technician accounts use `tech123`.
+All user and technician accounts use the password `123`.
 
 ---
 
