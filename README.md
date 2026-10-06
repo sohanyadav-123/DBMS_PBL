@@ -1,85 +1,87 @@
-# 🛡️ IT Helpdesk & Asset Support Management System
+# IT Helpdesk & Asset Support Management System
 
-> A college DBMS project demonstrating database design, ER relationships, CRUD operations, SQL JOINs, and role-based access through a web interface.
+A web-based IT support management application built as a DBMS course project. The system enables users to raise support tickets, allows technicians to resolve them, and gives administrators full visibility and control over tickets, assets, users, and SLA policies.
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#features)
 - [Tech Stack](#tech-stack)
-- [Database Structure](#database-structure)
+- [Database Design](#database-design)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the App](#running-the-app)
-- [Demo Credentials](#demo-credentials)
-- [SQL Concepts Demonstrated](#sql-concepts-demonstrated)
-- [Team](#team)
+- [Running the Application](#running-the-application)
+- [Login Credentials](#login-credentials)
+- [Project Structure](#project-structure)
+- [SQL Concepts Used](#sql-concepts-used)
 
 ---
 
-## ✨ Features
+## Features
 
 | Portal | Capabilities |
 |--------|-------------|
-| 👤 **User** | Create tickets, view own tickets, track status |
-| 🔧 **Technician** | View assigned tickets, update status, add resolution notes |
-| ⚡ **Admin** | Full control — users, technicians, assets, categories, SLA policies, dashboard stats |
+| **User** | Raise support tickets, track ticket status, view history |
+| **Technician** | View assigned tickets, update status, add resolution notes |
+| **Admin** | Manage users, technicians, assets, categories, SLA policies; view dashboard statistics |
 
-- Role-based access control (User / Technician / Admin)
-- Asset management with warranty & status tracking
-- SLA policy enforcement by ticket priority
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Backend:** Python 3, Flask
-- **Database:** MySQL 8+
-- **DB Driver:** `mysql-connector-python`
-- **Auth:** Werkzeug password hashing
+- Secure role-based authentication (Admin / Technician / User)
+- Asset tracking with purchase date, warranty, and status
+- SLA enforcement by ticket priority (High / Medium / Low)
+- Logout confirmation dialog to prevent accidental sign-out
+- Toast notifications for form feedback
 
 ---
 
-## 🗃️ Database Structure
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | HTML5, CSS3, Vanilla JavaScript |
+| Backend | Python 3, Flask |
+| Database | MySQL 8+ |
+| DB Driver | mysql-connector-python |
+| Auth | Werkzeug password hashing (scrypt) |
+
+---
+
+## Database Design
 
 ```
-Users        ──┐
-Technicians  ──┤──► Tickets ◄── Categories
-Assets       ──┘               SLA Policies
+users         ──┐
+technicians   ──┤──► tickets ◄── categories
+assets        ──┘               sla_policies
 ```
 
-| Table | Relationships |
-|-------|--------------|
-| `users` | 1:N → `tickets` |
-| `technicians` | 1:N → `tickets` |
-| `assets` | 1:N → `tickets` |
-| `categories` | 1:N → `tickets` |
-| `tickets` | FK to users, technicians, assets, categories |
+| Table | Key Relationships |
+|-------|------------------|
+| `users` | One user → many tickets |
+| `technicians` | One technician → many tickets |
+| `assets` | One asset → many tickets |
+| `categories` | One category → many tickets |
+| `tickets` | Foreign keys to users, technicians, assets, categories |
+| `sla_policies` | Defines response & resolution time by priority |
 
 ---
 
-## ✅ Prerequisites
-
-Make sure the following are installed before you start:
+## Prerequisites
 
 | Tool | Version | Download |
 |------|---------|----------|
-| Python | 3.8 or higher | [python.org](https://www.python.org/downloads/) |
-| MySQL Server | 8.0 or higher | [mysql.com](https://dev.mysql.com/downloads/mysql/) |
+| Python | 3.8+ | [python.org](https://www.python.org/downloads/) |
+| MySQL Server | 8.0+ | [mysql.com](https://dev.mysql.com/downloads/mysql/) |
 | Git | Any | [git-scm.com](https://git-scm.com/) |
 
-> **Windows users:** During Python installation, tick ✅ **"Add Python to PATH"**.  
-> **macOS users:** Python 3 can also be installed via `brew install python`.  
-> **Linux users:** Use `sudo apt install python3 python3-pip python3-venv mysql-server` (Debian/Ubuntu).
+> **Windows:** During Python installation, enable **"Add Python to PATH"**.  
+> **macOS:** Install Python via `brew install python` or the official installer.  
+> **Linux (Debian/Ubuntu):** `sudo apt install python3 python3-pip python3-venv mysql-server`
 
 ---
 
-## 🚀 Installation
+## Installation
 
-### Step 1 — Clone the Repository
+### 1. Clone the repository
 
 ```bash
 git clone <your-repo-url>
@@ -88,47 +90,33 @@ cd DBMS_pbl
 
 ---
 
-### Step 2 — Set Up the MySQL Database
-
-Start your MySQL service first:
+### 2. Start MySQL and import the database
 
 <details>
-<summary>▶ Windows</summary>
+<summary>Windows</summary>
 
-Open **Services** (search in Start Menu) → Start **MySQL80**, or run:
 ```cmd
 net start MySQL80
-```
-Then import the database:
-```cmd
 mysql -u root -p < database.sql
 ```
 
 </details>
 
 <details>
-<summary>▶ macOS</summary>
+<summary>macOS</summary>
 
-If installed via Homebrew:
 ```bash
 brew services start mysql
-```
-Or via MySQL installer, open **System Preferences → MySQL → Start**.  
-Then import:
-```bash
 mysql -u root -p < database.sql
 ```
 
 </details>
 
 <details>
-<summary>▶ Linux (Ubuntu/Debian)</summary>
+<summary>Linux</summary>
 
 ```bash
 sudo systemctl start mysql
-# or for older systems:
-sudo service mysql start
-
 mysql -u root -p < database.sql
 ```
 
@@ -136,10 +124,10 @@ mysql -u root -p < database.sql
 
 ---
 
-### Step 3 — Create a Python Virtual Environment
+### 3. Create a virtual environment
 
 <details>
-<summary>▶ Windows (Command Prompt / PowerShell)</summary>
+<summary>Windows</summary>
 
 ```cmd
 python -m venv venv
@@ -149,7 +137,7 @@ venv\Scripts\activate
 </details>
 
 <details>
-<summary>▶ macOS / Linux</summary>
+<summary>macOS / Linux</summary>
 
 ```bash
 python3 -m venv venv
@@ -158,11 +146,9 @@ source venv/bin/activate
 
 </details>
 
-You should see `(venv)` at the start of your terminal prompt when the environment is active.
-
 ---
 
-### Step 4 — Install Dependencies
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -170,10 +156,10 @@ pip install -r requirements.txt
 
 ---
 
-### Step 5 — Configure Environment Variables
+### 5. Set up environment variables
 
 <details>
-<summary>▶ Windows (Command Prompt)</summary>
+<summary>Windows</summary>
 
 ```cmd
 copy .env.example .env
@@ -182,7 +168,7 @@ copy .env.example .env
 </details>
 
 <details>
-<summary>▶ macOS / Linux</summary>
+<summary>macOS / Linux</summary>
 
 ```bash
 cp .env.example .env
@@ -190,107 +176,76 @@ cp .env.example .env
 
 </details>
 
-Open `.env` in any text editor and fill in your MySQL credentials:
+Edit `.env` and fill in your MySQL credentials:
 
 ```env
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=your_mysql_root_password
+DB_PASSWORD=your_mysql_password
 DB_NAME=it_helpdesk
-SECRET_KEY=any_random_string_here
+SECRET_KEY=any_random_secret_string
 ```
 
 ---
 
-## ▶️ Running the App
+## Running the Application
 
-Make sure your virtual environment is active, then:
+Ensure the virtual environment is active, then:
 
 <details>
-<summary>▶ Windows</summary>
+<summary>Windows</summary>
 
 ```cmd
-venv\Scripts\activate
 python app.py
 ```
 
 </details>
 
 <details>
-<summary>▶ macOS / Linux</summary>
+<summary>macOS / Linux</summary>
 
 ```bash
-source venv/bin/activate
 python3 app.py
 ```
 
 </details>
 
-Then open your browser and go to:
+Open your browser and visit:
 
 ```
-http://127.0.0.1:5000
+http://127.0.0.1:5001
 ```
 
-> **Port conflict?** If port 5000 is already in use (common on macOS due to AirPlay), either:
-> - macOS: Go to **System Preferences → General → AirDrop & Handoff** → disable **AirPlay Receiver**
-> - Or change the port: `python3 app.py` → edit the last line in `app.py` to `app.run(port=5001, debug=True)`
+> **Port conflict on macOS?** Disable **AirPlay Receiver** in System Preferences → General → AirDrop & Handoff, or change the port in the last line of `app.py` to another port number.
 
 ---
 
-## 🔐 Demo Login Credentials
+## Login Credentials
+
+The following demo accounts are pre-loaded by `database.sql`:
 
 | Role | Email | Password |
 |------|-------|----------|
-| Admin (Sohan) | `sohan@company.com` | `admin123` |
+| Admin | `sohan@company.com` | `admin123` |
 | Technician | `technician@company.com` | `tech123` |
-| User (Kiran) | `kiran@company.com` | `user123` |
-| User (Ram) | `ram@company.com` | `user123` |
+| User | `kiran@company.com` | `user123` |
+
+All user accounts use the password `user123`. All technician accounts use `tech123`.
 
 ---
 
-## 📐 SQL Concepts Demonstrated
-
-| Concept | Where Used |
-|---------|-----------|
-| **JOINs** | Fetching ticket details with user names, asset tags, category names |
-| **Aggregations** | `COUNT()` + `GROUP BY` for dashboard stats (tickets by status/priority) |
-| **CRUD** | `INSERT`, `UPDATE`, `DELETE`, `SELECT` across all entities |
-| **Foreign Keys** | `tickets` references `users`, `assets`, `technicians`, `categories` |
-| **Hashed Passwords** | `werkzeug.security` bcrypt hashing — no plaintext passwords |
-| **Role-based Access** | Session-based route guards by `role` column in `users` table |
-
----
-
-## 👥 Team
-
-| Name | Role |
-|------|------|
-| Sohan | Developer |
-| Kiran | Developer |
-| Ram | Developer |
-| Rock | Developer |
-| Alsabur | Developer |
-| Soumya | Developer |
-| Samyuktha | Developer |
-| Abhinay | Developer |
-| Tanush | Developer |
-| Sriram | Developer |
-
----
-
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 DBMS_pbl/
-├── app.py                  # Flask backend & all API routes
-├── database.sql            # Full DB schema + sample data
+├── app.py                  # Flask application — all routes and API endpoints
+├── database.sql            # Database schema and sample data
 ├── requirements.txt        # Python dependencies
 ├── .env.example            # Environment variable template
-├── .env                    # Your local config (don't commit this!)
+├── .env                    # Local configuration (do not commit)
 ├── static/
-│   ├── css/style.css       # Dark theme design system
-│   └── js/                 # Per-page JavaScript (tickets, assets, etc.)
+│   ├── css/style.css       # Application stylesheet
+│   └── js/                 # JavaScript — main.js, dashboard.js, tickets.js, assets.js
 └── templates/              # Jinja2 HTML templates
     ├── login.html
     ├── admin_dashboard.html
@@ -307,4 +262,18 @@ DBMS_pbl/
 
 ---
 
-> **DBMS Project — 2024** · Built with Flask + MySQL
+## SQL Concepts Used
+
+| Concept | Usage |
+|---------|-------|
+| **Joins** | Ticket list queries combining users, assets, categories, technicians |
+| **Aggregation** | `COUNT()` with `GROUP BY` for dashboard statistics |
+| **CRUD** | Full create, read, update, delete across all entities |
+| **Foreign Keys** | `tickets` references four separate tables |
+| **Password Hashing** | Werkzeug scrypt hashing — no plaintext passwords stored |
+| **Role-based Access** | Session checks on every protected route |
+| **Subqueries / Filters** | Filtered ticket views per user role |
+
+---
+
+> DBMS Project — 2024 · Built with Flask and MySQL
