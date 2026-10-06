@@ -242,9 +242,10 @@ http://127.0.0.1:5000
 
 | Role | Email | Password |
 |------|-------|----------|
-| ⚡ Admin | `admin@company.com` | `admin123` |
-| 🔧 Technician | `technician@company.com` | `tech123` |
-| 👤 User | `user@company.com` | `user123` |
+| Admin (Sohan) | `sohan@company.com` | `admin123` |
+| Technician | `technician@company.com` | `tech123` |
+| User (Kiran) | `kiran@company.com` | `user123` |
+| User (Ram) | `ram@company.com` | `user123` |
 
 ---
 
