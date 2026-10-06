@@ -149,6 +149,8 @@ def ticket_details(id):
     return render_template('ticket_details.html', ticket_id=id)
 
 # ----- API ENDPOINTS -----
+# Core backend API for handling frontend asynchronous requests
+
 
 @app.route('/api/stats/dashboard')
 def api_dashboard_stats():
