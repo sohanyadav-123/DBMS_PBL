@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories - Admin</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>IT Helpdesk</h3>
+            <small>Admin Portal</small>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="/admin_dashboard">Dashboard</a></li>
+            <li><a href="/tickets">Tickets</a></li>
+            <li><a href="/assets">Assets</a></li>
+            <li><a href="/users">Users</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/categories" class="active">Categories</a></li>
+            <li><a href="/sla_policies">SLA Policies</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="topbar">
+            <h2>Categories</h2>
+            <div>Welcome, {{ session['name'] }}</div>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Categories</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cat-body">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const cats = await fetchJSON('/api/categories');
+            if (cats) {
+                const body = document.getElementById('cat-body');
+                cats.forEach(c => {
+                    body.insertAdjacentHTML('beforeend', `
+                        <tr>
+                            <td>${c.category_id}</td>
+                            <td>${c.name}</td>
+                            <td>${c.description || '-'}</td>
+                        </tr>
+                    `);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

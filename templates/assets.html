@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assets - Admin</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>IT Helpdesk</h3>
+            <small>Admin Portal</small>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="/admin_dashboard">Dashboard</a></li>
+            <li><a href="/tickets">Tickets</a></li>
+            <li><a href="/assets" class="active">Assets</a></li>
+            <li><a href="/users">Users</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="/sla_policies">SLA Policies</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="topbar">
+            <h2>Asset Management</h2>
+            <div>Welcome, {{ session['name'] }}</div>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Add New Asset</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <form id="add-asset-form">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label>Asset Tag</label>
+                                <input type="text" id="a-tag" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <input type="text" id="a-type" class="form-control" placeholder="e.g. Laptop, Monitor" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Serial Number</label>
+                                <input type="text" id="a-serial" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Purchase Date</label>
+                                <input type="date" id="a-purchase" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Warranty End</label>
+                                <input type="date" id="a-warranty" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="a-status" class="form-control">
+                                    <option value="Available">Available</option>
+                                    <option value="Assigned">Assigned</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                    <option value="Retired">Retired</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:auto; margin-top:1rem;">Add Asset</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Assets</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Asset Tag</th>
+                                <th>Type</th>
+                                <th>Serial No</th>
+                                <th>Purchase Date</th>
+                                <th>Warranty End</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assets-table-body">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/assets.js"></script>
+</body>
+</html>

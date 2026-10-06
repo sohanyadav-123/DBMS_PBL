@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket Details - IT Helpdesk</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>IT Helpdesk</h3>
+            <small>{{ session['role'] | capitalize }} Portal</small>
+        </div>
+        <ul class="sidebar-nav">
+            {% if session['role'] == 'admin' %}
+                <li><a href="/admin_dashboard">Dashboard</a></li>
+                <li><a href="/tickets" class="active">Tickets</a></li>
+            {% elif session['role'] == 'technician' %}
+                <li><a href="/technician_dashboard">Dashboard</a></li>
+                <li><a href="/tickets" class="active">Assigned Tickets</a></li>
+            {% else %}
+                <li><a href="/user_dashboard">Dashboard</a></li>
+                <li><a href="/tickets" class="active">My Tickets</a></li>
+            {% endif %}
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="topbar">
+            <h2>Ticket Details #T<span id="t-id">{{ ticket_id }}</span></h2>
+            <div>Welcome, {{ session['name'] }}</div>
+        </div>
+        
+        <div class="content" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Description</h3>
+                        <span id="t-status" class="badge"></span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <p id="t-desc" style="white-space: pre-wrap; line-height: 1.6;"></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Resolution Notes</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <p id="t-res" style="white-space: pre-wrap; line-height: 1.6; color: var(--secondary);"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ticket Info</h3>
+                    </div>
+                    <div style="padding: 1.5rem; line-height: 2;">
+                        <strong>User:</strong> <span id="t-user"></span><br>
+                        <strong>Email:</strong> <span id="t-email"></span><br>
+                        <strong>Department:</strong> <span id="t-dept"></span><br>
+                        <strong>Category:</strong> <span id="t-cat"></span><br>
+                        <strong>Asset:</strong> <span id="t-asset"></span><br>
+                        <strong>Priority:</strong> <span id="t-priority" class="badge"></span><br>
+                        <strong>Created At:</strong> <span id="t-created"></span><br>
+                        <strong>Technician:</strong> <span id="t-tech"></span>
+                    </div>
+                </div>
+
+                {% if session['role'] in ['admin', 'technician'] %}
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Update Ticket</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <form id="update-ticket-form">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="update-status" class="form-control">
+                                    <option value="Open">Open</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Resolved">Resolved</option>
+                                    <option value="Closed">Closed</option>
+                                </select>
+                            </div>
+                            
+                            {% if session['role'] == 'admin' %}
+                            <div class="form-group">
+                                <label>Assign Technician</label>
+                                <select id="update-tech" class="form-control">
+                                    <option value="">-- Unassigned --</option>
+                                </select>
+                            </div>
+                            {% endif %}
+
+                            <div class="form-group">
+                                <label>Resolution</label>
+                                <textarea id="update-resolution" class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Ticket</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const tId = document.getElementById('t-id').innerText;
+            const ticket = await fetchJSON('/api/tickets/' + tId);
+            if (!ticket) return;
+
+            document.getElementById('t-status').className = `badge ${getBadgeClass(ticket.status)}`;
+            document.getElementById('t-status').innerText = ticket.status;
+            document.getElementById('t-desc').innerText = ticket.description;
+            document.getElementById('t-res').innerText = ticket.resolution || 'No resolution provided yet.';
+            
+            document.getElementById('t-user').innerText = ticket.user_name;
+            document.getElementById('t-email').innerText = ticket.user_email;
+            document.getElementById('t-dept').innerText = ticket.department || 'N/A';
+            document.getElementById('t-cat').innerText = ticket.category_name;
+            document.getElementById('t-asset').innerText = ticket.asset_tag || 'N/A';
+            
+            document.getElementById('t-priority').className = `badge ${getBadgeClass(ticket.priority)}`;
+            document.getElementById('t-priority').innerText = ticket.priority;
+            
+            document.getElementById('t-created').innerText = new Date(ticket.created_at).toLocaleString();
+            document.getElementById('t-tech').innerText = ticket.technician_name || 'Unassigned';
+
+            // Setup update form
+            const form = document.getElementById('update-ticket-form');
+            if (form) {
+                document.getElementById('update-status').value = ticket.status;
+                document.getElementById('update-resolution').value = ticket.resolution || '';
+                
+                const techSelect = document.getElementById('update-tech');
+                if (techSelect) {
+                    const techs = await fetchJSON('/api/technicians');
+                    if (techs) {
+                        techs.forEach(t => {
+                            const sel = (ticket.technician_id === t.technician_id) ? 'selected' : '';
+                            techSelect.insertAdjacentHTML('beforeend', `<option value="${t.technician_id}" ${sel}>${t.name}</option>`);
+                        });
+                    }
+                }
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const data = {
+                        status: document.getElementById('update-status').value,
+                        resolution: document.getElementById('update-resolution').value
+                    };
+                    if (techSelect) {
+                        data.technician_id = techSelect.value || null;
+                    }
+
+                    try {
+                        const res = await fetch('/api/tickets/' + tId, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+                        if (res.ok) {
+                            alert('Updated successfully');
+                            location.reload();
+                        } else {
+                            const err = await res.json();
+                            alert(err.error || 'Error updating');
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

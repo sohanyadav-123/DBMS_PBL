@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users - Admin</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>IT Helpdesk</h3>
+            <small>Admin Portal</small>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="/admin_dashboard">Dashboard</a></li>
+            <li><a href="/tickets">Tickets</a></li>
+            <li><a href="/assets">Assets</a></li>
+            <li><a href="/users" class="active">Users</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="/sla_policies">SLA Policies</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="topbar">
+            <h2>User Management</h2>
+            <div>Welcome, {{ session['name'] }}</div>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Users</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-body">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const users = await fetchJSON('/api/users');
+            if (users) {
+                const body = document.getElementById('users-body');
+                users.forEach(u => {
+                    body.insertAdjacentHTML('beforeend', `
+                        <tr>
+                            <td>${u.user_id}</td>
+                            <td>${u.name}</td>
+                            <td>${u.email}</td>
+                            <td>${u.role}</td>
+                            <td>${u.department || '-'}</td>
+                            <td>${new Date(u.created_at).toLocaleDateString()}</td>
+                        </tr>
+                    `);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
