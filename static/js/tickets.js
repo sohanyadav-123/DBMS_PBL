@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const tableBody = document.getElementById('tickets-table-body');
     const form = document.getElementById('create-ticket-form');
-    
+
     // Load tickets
     const loadTickets = async () => {
         const tickets = await fetchJSON('/api/tickets');
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 priority: document.getElementById('priority-select').value,
                 description: document.getElementById('desc-input').value
             };
-            
+
             try {
                 const res = await fetch('/api/tickets', {
                     method: 'POST',

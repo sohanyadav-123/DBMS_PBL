@@ -40,7 +40,7 @@ body {
     background: var(--white);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
 }
@@ -120,7 +120,8 @@ body {
     transition: all 0.3s;
 }
 
-.sidebar-nav li a:hover, .sidebar-nav li a.active {
+.sidebar-nav li a:hover,
+.sidebar-nav li a.active {
     background-color: var(--primary);
     color: var(--white);
     border-left: 4px solid #fff;
@@ -135,7 +136,7 @@ body {
 .topbar {
     background-color: var(--white);
     padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -159,7 +160,7 @@ body {
     background: var(--white);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border-left: 4px solid var(--primary);
 }
 
@@ -180,7 +181,7 @@ body {
 .card {
     background: var(--white);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     margin-bottom: 2rem;
 }
 
@@ -201,7 +202,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 0.75rem 1.5rem;
     text-align: left;
     border-bottom: 1px solid var(--border);
@@ -221,13 +223,40 @@ th {
     font-weight: 600;
 }
 
-.badge-open { background-color: var(--primary-light); color: var(--primary); }
-.badge-progress { background-color: #fff3cd; color: #856404; }
-.badge-resolved { background-color: #d4edda; color: #155724; }
-.badge-closed { background-color: #e2e3e5; color: #383d41; }
-.badge-high { background-color: #f8d7da; color: #721c24; }
-.badge-medium { background-color: #fff3cd; color: #856404; }
-.badge-low { background-color: #d4edda; color: #155724; }
+.badge-open {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.badge-progress {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-resolved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge-closed {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.badge-high {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.badge-medium {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-low {
+    background-color: #d4edda;
+    color: #155724;
+}
 
 .alert {
     padding: 1rem;
@@ -235,5 +264,12 @@ th {
     border-radius: 4px;
 }
 
-.alert-error { background-color: #f8d7da; color: #721c24; }
-.alert-success { background-color: #d4edda; color: #155724; }
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}

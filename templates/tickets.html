@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Tickets - IT Helpdesk</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
@@ -13,30 +15,30 @@
         </div>
         <ul class="sidebar-nav">
             {% if session['role'] == 'admin' %}
-                <li><a href="/admin_dashboard">Dashboard</a></li>
-                <li><a href="/tickets" class="active">Tickets</a></li>
-                <li><a href="/assets">Assets</a></li>
-                <li><a href="/users">Users</a></li>
-                <li><a href="/technicians">Technicians</a></li>
-                <li><a href="/categories">Categories</a></li>
-                <li><a href="/sla_policies">SLA Policies</a></li>
+            <li><a href="/admin_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">Tickets</a></li>
+            <li><a href="/assets">Assets</a></li>
+            <li><a href="/users">Users</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="/sla_policies">SLA Policies</a></li>
             {% elif session['role'] == 'technician' %}
-                <li><a href="/technician_dashboard">Dashboard</a></li>
-                <li><a href="/tickets" class="active">Assigned Tickets</a></li>
+            <li><a href="/technician_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">Assigned Tickets</a></li>
             {% else %}
-                <li><a href="/user_dashboard">Dashboard</a></li>
-                <li><a href="/tickets" class="active">My Tickets</a></li>
+            <li><a href="/user_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">My Tickets</a></li>
             {% endif %}
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
-    
+
     <div class="main-content">
         <div class="topbar">
             <h2>Tickets</h2>
             <div>Welcome, {{ session['name'] }}</div>
         </div>
-        
+
         <div class="content">
             {% if session['role'] == 'user' or session['role'] == 'admin' %}
             <div class="card" id="create-ticket-card">
@@ -105,4 +107,5 @@
     <script src="/static/js/main.js"></script>
     <script src="/static/js/tickets.js"></script>
 </body>
+
 </html>

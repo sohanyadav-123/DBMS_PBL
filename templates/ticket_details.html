@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Ticket Details - IT Helpdesk</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
@@ -13,25 +15,25 @@
         </div>
         <ul class="sidebar-nav">
             {% if session['role'] == 'admin' %}
-                <li><a href="/admin_dashboard">Dashboard</a></li>
-                <li><a href="/tickets" class="active">Tickets</a></li>
+            <li><a href="/admin_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">Tickets</a></li>
             {% elif session['role'] == 'technician' %}
-                <li><a href="/technician_dashboard">Dashboard</a></li>
-                <li><a href="/tickets" class="active">Assigned Tickets</a></li>
+            <li><a href="/technician_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">Assigned Tickets</a></li>
             {% else %}
-                <li><a href="/user_dashboard">Dashboard</a></li>
-                <li><a href="/tickets" class="active">My Tickets</a></li>
+            <li><a href="/user_dashboard">Dashboard</a></li>
+            <li><a href="/tickets" class="active">My Tickets</a></li>
             {% endif %}
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
-    
+
     <div class="main-content">
         <div class="topbar">
             <h2>Ticket Details #T<span id="t-id">{{ ticket_id }}</span></h2>
             <div>Welcome, {{ session['name'] }}</div>
         </div>
-        
+
         <div class="content" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
             <div>
                 <div class="card">
@@ -87,7 +89,7 @@
                                     <option value="Closed">Closed</option>
                                 </select>
                             </div>
-                            
+
                             {% if session['role'] == 'admin' %}
                             <div class="form-group">
                                 <label>Assign Technician</label>
@@ -121,16 +123,16 @@
             document.getElementById('t-status').innerText = ticket.status;
             document.getElementById('t-desc').innerText = ticket.description;
             document.getElementById('t-res').innerText = ticket.resolution || 'No resolution provided yet.';
-            
+
             document.getElementById('t-user').innerText = ticket.user_name;
             document.getElementById('t-email').innerText = ticket.user_email;
             document.getElementById('t-dept').innerText = ticket.department || 'N/A';
             document.getElementById('t-cat').innerText = ticket.category_name;
             document.getElementById('t-asset').innerText = ticket.asset_tag || 'N/A';
-            
+
             document.getElementById('t-priority').className = `badge ${getBadgeClass(ticket.priority)}`;
             document.getElementById('t-priority').innerText = ticket.priority;
-            
+
             document.getElementById('t-created').innerText = new Date(ticket.created_at).toLocaleString();
             document.getElementById('t-tech').innerText = ticket.technician_name || 'Unassigned';
 
@@ -139,7 +141,7 @@
             if (form) {
                 document.getElementById('update-status').value = ticket.status;
                 document.getElementById('update-resolution').value = ticket.resolution || '';
-                
+
                 const techSelect = document.getElementById('update-tech');
                 if (techSelect) {
                     const techs = await fetchJSON('/api/technicians');
@@ -182,4 +184,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Technician Dashboard</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
@@ -17,18 +19,18 @@
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
-    
+
     <div class="main-content">
         <div class="topbar">
             <h2>Technician Dashboard</h2>
             <div>Welcome, {{ session['name'] }}</div>
         </div>
-        
+
         <div class="content">
             <div id="dashboard-stats" class="stats-grid">
                 <!-- Stats loaded via JS -->
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <h3>Recent Assigned Tickets</h3>
@@ -59,4 +61,5 @@
     <script src="/static/js/main.js"></script>
     <script src="/static/js/dashboard.js"></script>
 </body>
+
 </html>
