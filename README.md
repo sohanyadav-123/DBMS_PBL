@@ -18,7 +18,7 @@ A web-based IT support management application built as a DBMS course project. Th
 
 ---
 
-## ✦ Features
+## Features
 
 | Portal | Capabilities |
 |--------|-------------|
@@ -34,7 +34,7 @@ A web-based IT support management application built as a DBMS course project. Th
 
 ---
 
-## ✦ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -46,7 +46,7 @@ A web-based IT support management application built as a DBMS course project. Th
 
 ---
 
-## ✦ Database Design
+## Database Design
 
 ```
 users         ──┐
@@ -65,7 +65,7 @@ assets        ──┘               sla_policies
 
 ---
 
-## ✦ Prerequisites
+## Prerequisites
 
 | Tool | Version | Download |
 |------|---------|----------|
@@ -79,7 +79,7 @@ assets        ──┘               sla_policies
 
 ---
 
-## ✦ Installation
+## Installation
 
 ### 1. Clone the repository
 
@@ -188,7 +188,7 @@ SECRET_KEY=any_random_secret_string
 
 ---
 
-## ✦ Running the Application
+## Running the Application
 
 Ensure the virtual environment is active, then:
 
@@ -220,7 +220,7 @@ http://127.0.0.1:5001
 
 ---
 
-## ✦ Login Credentials
+## Login Credentials
 
 The following demo accounts are pre-loaded by `database.sql`:
 
@@ -234,7 +234,7 @@ All user accounts use the password `user123`. All technician accounts use `tech1
 
 ---
 
-## ✦ Project Structure
+## Project Structure
 
 ```
 DBMS_pbl/
@@ -262,7 +262,7 @@ DBMS_pbl/
 
 ---
 
-## ✦ SQL Concepts Used
+## SQL Concepts Used
 
 | Concept | Usage |
 |---------|-------|
