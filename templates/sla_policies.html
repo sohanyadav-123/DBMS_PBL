@@ -3,66 +3,148 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>SLA Policies - Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLA Policies — Admin Portal</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .sla-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            padding: 1.5rem;
+        }
+        .sla-rule {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--r-lg);
+            padding: 1.5rem;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .sla-rule:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+        }
+        .sla-rule .sla-badge { margin-bottom: 1rem; }
+        .sla-rule .sla-metric {
+            display: flex;
+            justify-content: space-around;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .sla-rule .sla-metric div {
+            flex: 1;
+            background: rgba(255,255,255,0.03);
+            border-radius: var(--r-sm);
+            padding: 0.75rem 0.5rem;
+        }
+        .sla-rule .sla-metric .metric-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .sla-rule .sla-metric .metric-val {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .sla-rule .sla-metric .metric-unit {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+    </style>
 </head>
 
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>IT Helpdesk</h3>
-            <small>Admin Portal</small>
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">🛡️</div>
+                <div>
+                    <h3>IT Helpdesk</h3>
+                    <small>Admin Portal</small>
+                </div>
+            </div>
         </div>
         <ul class="sidebar-nav">
-            <li><a href="/admin_dashboard">Dashboard</a></li>
-            <li><a href="/tickets">Tickets</a></li>
-            <li><a href="/assets">Assets</a></li>
-            <li><a href="/users">Users</a></li>
-            <li><a href="/technicians">Technicians</a></li>
-            <li><a href="/categories">Categories</a></li>
-            <li><a href="/sla_policies" class="active">SLA Policies</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li class="nav-section-label">Main</li>
+            <li><a href="/admin_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets"><span class="nav-icon">🎫</span> Tickets</a></li>
+            <li><a href="/assets"><span class="nav-icon">💻</span> Assets</a></li>
+            <li class="nav-section-label">Manage</li>
+            <li><a href="/users"><span class="nav-icon">👥</span> Users</a></li>
+            <li><a href="/technicians"><span class="nav-icon">🔧</span> Technicians</a></li>
+            <li><a href="/categories"><span class="nav-icon">🏷️</span> Categories</a></li>
+            <li><a href="/sla_policies" class="active"><span class="nav-icon">📋</span> SLA Policies</a></li>
         </ul>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn"><span>🚪</span> Sign Out</a>
+        </div>
     </div>
 
     <div class="main-content">
         <div class="topbar">
-            <h2>SLA Policies</h2>
-            <div>Welcome, {{ session['name'] }}</div>
+            <h2>📋 SLA Policies</h2>
+            <div class="topbar-user">
+                <span class="user-dot"></span>
+                {{ session['name'] }}
+            </div>
         </div>
 
         <div class="content">
             <div class="card">
                 <div class="card-header">
-                    <h3>SLA Rules</h3>
+                    <h3>⏱️ Response & Resolution Targets</h3>
                 </div>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Priority</th>
-                                <th>Response Hours</th>
-                                <th>Resolution Hours</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="badge badge-high">High</span></td>
-                                <td>1 hr</td>
-                                <td>4 hrs</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-medium">Medium</span></td>
-                                <td>4 hrs</td>
-                                <td>12 hrs</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge badge-low">Low</span></td>
-                                <td>8 hrs</td>
-                                <td>24 hrs</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="sla-card-grid">
+                    <div class="sla-rule">
+                        <div class="sla-badge"><span class="badge badge-high">🔴 High Priority</span></div>
+                        <div class="sla-metric">
+                            <div>
+                                <div class="metric-label">Response</div>
+                                <div class="metric-val">1</div>
+                                <div class="metric-unit">hour</div>
+                            </div>
+                            <div>
+                                <div class="metric-label">Resolution</div>
+                                <div class="metric-val">4</div>
+                                <div class="metric-unit">hours</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sla-rule">
+                        <div class="sla-badge"><span class="badge badge-medium">🟡 Medium Priority</span></div>
+                        <div class="sla-metric">
+                            <div>
+                                <div class="metric-label">Response</div>
+                                <div class="metric-val">4</div>
+                                <div class="metric-unit">hours</div>
+                            </div>
+                            <div>
+                                <div class="metric-label">Resolution</div>
+                                <div class="metric-val">12</div>
+                                <div class="metric-unit">hours</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sla-rule">
+                        <div class="sla-badge"><span class="badge badge-low">🟢 Low Priority</span></div>
+                        <div class="sla-metric">
+                            <div>
+                                <div class="metric-label">Response</div>
+                                <div class="metric-val">8</div>
+                                <div class="metric-unit">hours</div>
+                            </div>
+                            <div>
+                                <div class="metric-label">Resolution</div>
+                                <div class="metric-val">24</div>
+                                <div class="metric-unit">hours</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

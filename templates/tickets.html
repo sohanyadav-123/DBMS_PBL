@@ -3,51 +3,64 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Tickets - IT Helpdesk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets — IT Helpdesk</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>IT Helpdesk</h3>
-            <small>{{ session['role'] | capitalize }} Portal</small>
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">🛡️</div>
+                <div>
+                    <h3>IT Helpdesk</h3>
+                    <small>{{ session['role'] | capitalize }} Portal</small>
+                </div>
+            </div>
         </div>
         <ul class="sidebar-nav">
+            <li class="nav-section-label">Main</li>
             {% if session['role'] == 'admin' %}
-            <li><a href="/admin_dashboard">Dashboard</a></li>
-            <li><a href="/tickets" class="active">Tickets</a></li>
-            <li><a href="/assets">Assets</a></li>
-            <li><a href="/users">Users</a></li>
-            <li><a href="/technicians">Technicians</a></li>
-            <li><a href="/categories">Categories</a></li>
-            <li><a href="/sla_policies">SLA Policies</a></li>
+            <li><a href="/admin_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> Tickets</a></li>
+            <li><a href="/assets"><span class="nav-icon">💻</span> Assets</a></li>
+            <li class="nav-section-label">Manage</li>
+            <li><a href="/users"><span class="nav-icon">👥</span> Users</a></li>
+            <li><a href="/technicians"><span class="nav-icon">🔧</span> Technicians</a></li>
+            <li><a href="/categories"><span class="nav-icon">🏷️</span> Categories</a></li>
+            <li><a href="/sla_policies"><span class="nav-icon">📋</span> SLA Policies</a></li>
             {% elif session['role'] == 'technician' %}
-            <li><a href="/technician_dashboard">Dashboard</a></li>
-            <li><a href="/tickets" class="active">Assigned Tickets</a></li>
+            <li><a href="/technician_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> Assigned Tickets</a></li>
             {% else %}
-            <li><a href="/user_dashboard">Dashboard</a></li>
-            <li><a href="/tickets" class="active">My Tickets</a></li>
+            <li><a href="/user_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> My Tickets</a></li>
             {% endif %}
-            <li><a href="/logout">Logout</a></li>
         </ul>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn"><span>🚪</span> Sign Out</a>
+        </div>
     </div>
 
     <div class="main-content">
         <div class="topbar">
-            <h2>Tickets</h2>
-            <div>Welcome, {{ session['name'] }}</div>
+            <h2>🎫 Tickets</h2>
+            <div class="topbar-user">
+                <span class="user-dot"></span>
+                {{ session['name'] }}
+            </div>
         </div>
 
         <div class="content">
             {% if session['role'] == 'user' or session['role'] == 'admin' %}
             <div class="card" id="create-ticket-card">
                 <div class="card-header">
-                    <h3>Create New Ticket</h3>
+                    <h3>✏️ Create New Ticket</h3>
                 </div>
-                <div style="padding: 1.5rem;">
+                <div class="card-body">
                     <form id="create-ticket-form">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
                             <div class="form-group">
                                 <label>Category</label>
                                 <select id="cat-select" class="form-control" required></select>
@@ -55,7 +68,7 @@
                             <div class="form-group">
                                 <label>Asset (Optional)</label>
                                 <select id="asset-select" class="form-control">
-                                    <option value="">-- None --</option>
+                                    <option value="">— None —</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -69,9 +82,9 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea id="desc-input" class="form-control" rows="4" required></textarea>
+                            <textarea id="desc-input" class="form-control" rows="4" placeholder="Describe your issue in detail..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width:auto;">Submit Ticket</button>
+                        <button type="submit" class="btn btn-primary" style="width:auto;">🚀 Submit Ticket</button>
                     </form>
                 </div>
             </div>
@@ -79,7 +92,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3>All Tickets</h3>
+                    <h3>📋 All Tickets</h3>
                 </div>
                 <div class="table-responsive">
                     <table>

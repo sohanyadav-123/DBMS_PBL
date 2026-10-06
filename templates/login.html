@@ -3,34 +3,76 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login - IT Helpdesk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — IT Helpdesk</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .divider {
+            display: flex; align-items: center; gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .divider span {
+            flex: 1; height: 1px;
+            background: var(--border-dim);
+        }
+        .divider p {
+            font-size: 0.75rem; color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .hint-box {
+            background: var(--accent-dim);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--r-md);
+            padding: 0.75rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+        .hint-box span { color: var(--accent-bright); font-weight: 600; }
+        .powered-by {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
 </head>
 
 <body>
     <div class="auth-container">
         <div class="auth-card">
-            <h2>IT Helpdesk & Asset Management</h2>
+            <div class="auth-logo">
+                <div class="logo-icon">🛡️</div>
+                <h1>IT Helpdesk</h1>
+                <p>Asset &amp; Ticket Management</p>
+            </div>
 
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">{{ message }}</div>
+            <div class="alert alert-{{ category }}">⚠ {{ message }}</div>
             {% endfor %}
             {% endif %}
             {% endwith %}
 
+            <div class="hint-box">
+                💡 Use email: <span>admin@example.com</span> or any registered user account to sign in.
+            </div>
+
             <form method="POST" action="/login">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" name="email" class="form-control" required>
+                    <input type="email" name="email" class="form-control" placeholder="you@example.com" required autocomplete="email">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="password" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Sign In →</button>
             </form>
+
+            <p class="powered-by">v2.0 · DBMS Project · 2024</p>
         </div>
     </div>
 </body>

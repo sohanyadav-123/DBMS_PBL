@@ -3,82 +3,159 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ticket Details - IT Helpdesk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Details — IT Helpdesk</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .detail-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid var(--border-dim);
+        }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+        .detail-val {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        #t-desc, #t-res {
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        #t-res {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
 </head>
 
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>IT Helpdesk</h3>
-            <small>{{ session['role'] | capitalize }} Portal</small>
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">🛡️</div>
+                <div>
+                    <h3>IT Helpdesk</h3>
+                    <small>{{ session['role'] | capitalize }} Portal</small>
+                </div>
+            </div>
         </div>
         <ul class="sidebar-nav">
+            <li class="nav-section-label">Main</li>
             {% if session['role'] == 'admin' %}
-            <li><a href="/admin_dashboard">Dashboard</a></li>
-            <li><a href="/tickets" class="active">Tickets</a></li>
+            <li><a href="/admin_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> Tickets</a></li>
+            <li><a href="/assets"><span class="nav-icon">💻</span> Assets</a></li>
+            <li class="nav-section-label">Manage</li>
+            <li><a href="/users"><span class="nav-icon">👥</span> Users</a></li>
+            <li><a href="/technicians"><span class="nav-icon">🔧</span> Technicians</a></li>
+            <li><a href="/categories"><span class="nav-icon">🏷️</span> Categories</a></li>
+            <li><a href="/sla_policies"><span class="nav-icon">📋</span> SLA Policies</a></li>
             {% elif session['role'] == 'technician' %}
-            <li><a href="/technician_dashboard">Dashboard</a></li>
-            <li><a href="/tickets" class="active">Assigned Tickets</a></li>
+            <li><a href="/technician_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> Assigned Tickets</a></li>
             {% else %}
-            <li><a href="/user_dashboard">Dashboard</a></li>
-            <li><a href="/tickets" class="active">My Tickets</a></li>
+            <li><a href="/user_dashboard"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets" class="active"><span class="nav-icon">🎫</span> My Tickets</a></li>
             {% endif %}
-            <li><a href="/logout">Logout</a></li>
         </ul>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn"><span>🚪</span> Sign Out</a>
+        </div>
     </div>
 
     <div class="main-content">
         <div class="topbar">
-            <h2>Ticket Details #T<span id="t-id">{{ ticket_id }}</span></h2>
-            <div>Welcome, {{ session['name'] }}</div>
+            <h2>🎫 Ticket <span id="t-id">{{ ticket_id }}</span></h2>
+            <div class="topbar-user">
+                <span class="user-dot"></span>
+                {{ session['name'] }}
+            </div>
         </div>
 
-        <div class="content" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+        <div class="content" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+            <!-- Left column -->
             <div>
                 <div class="card">
                     <div class="card-header">
-                        <h3>Description</h3>
+                        <h3>📝 Description</h3>
                         <span id="t-status" class="badge"></span>
                     </div>
-                    <div style="padding: 1.5rem;">
-                        <p id="t-desc" style="white-space: pre-wrap; line-height: 1.6;"></p>
+                    <div class="card-body">
+                        <p id="t-desc"></p>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Resolution Notes</h3>
+                        <h3>✅ Resolution Notes</h3>
                     </div>
-                    <div style="padding: 1.5rem;">
-                        <p id="t-res" style="white-space: pre-wrap; line-height: 1.6; color: var(--secondary);"></p>
+                    <div class="card-body">
+                        <p id="t-res"></p>
                     </div>
                 </div>
             </div>
 
+            <!-- Right column -->
             <div>
                 <div class="card">
                     <div class="card-header">
-                        <h3>Ticket Info</h3>
+                        <h3>ℹ️ Ticket Info</h3>
                     </div>
-                    <div style="padding: 1.5rem; line-height: 2;">
-                        <strong>User:</strong> <span id="t-user"></span><br>
-                        <strong>Email:</strong> <span id="t-email"></span><br>
-                        <strong>Department:</strong> <span id="t-dept"></span><br>
-                        <strong>Category:</strong> <span id="t-cat"></span><br>
-                        <strong>Asset:</strong> <span id="t-asset"></span><br>
-                        <strong>Priority:</strong> <span id="t-priority" class="badge"></span><br>
-                        <strong>Created At:</strong> <span id="t-created"></span><br>
-                        <strong>Technician:</strong> <span id="t-tech"></span>
+                    <div class="card-body">
+                        <div class="detail-row">
+                            <span class="detail-label">User</span>
+                            <span class="detail-val" id="t-user"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-val" id="t-email"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Department</span>
+                            <span class="detail-val" id="t-dept"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Category</span>
+                            <span class="detail-val" id="t-cat"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Asset</span>
+                            <span class="detail-val" id="t-asset"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Priority</span>
+                            <span id="t-priority" class="badge"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Created</span>
+                            <span class="detail-val" id="t-created"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Assigned To</span>
+                            <span class="detail-val" id="t-tech"></span>
+                        </div>
                     </div>
                 </div>
 
                 {% if session['role'] in ['admin', 'technician'] %}
                 <div class="card">
                     <div class="card-header">
-                        <h3>Update Ticket</h3>
+                        <h3>✏️ Update Ticket</h3>
                     </div>
-                    <div style="padding: 1.5rem;">
+                    <div class="card-body">
                         <form id="update-ticket-form">
                             <div class="form-group">
                                 <label>Status</label>
@@ -94,16 +171,16 @@
                             <div class="form-group">
                                 <label>Assign Technician</label>
                                 <select id="update-tech" class="form-control">
-                                    <option value="">-- Unassigned --</option>
+                                    <option value="">— Unassigned —</option>
                                 </select>
                             </div>
                             {% endif %}
 
                             <div class="form-group">
-                                <label>Resolution</label>
-                                <textarea id="update-resolution" class="form-control" rows="3"></textarea>
+                                <label>Resolution Notes</label>
+                                <textarea id="update-resolution" class="form-control" rows="3" placeholder="Describe the resolution..."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update Ticket</button>
+                            <button type="submit" class="btn btn-primary">💾 Save Changes</button>
                         </form>
                     </div>
                 </div>
@@ -122,21 +199,20 @@
             document.getElementById('t-status').className = `badge ${getBadgeClass(ticket.status)}`;
             document.getElementById('t-status').innerText = ticket.status;
             document.getElementById('t-desc').innerText = ticket.description;
-            document.getElementById('t-res').innerText = ticket.resolution || 'No resolution provided yet.';
+            document.getElementById('t-res').innerText = ticket.resolution || 'No resolution notes yet.';
 
             document.getElementById('t-user').innerText = ticket.user_name;
             document.getElementById('t-email').innerText = ticket.user_email;
-            document.getElementById('t-dept').innerText = ticket.department || 'N/A';
+            document.getElementById('t-dept').innerText = ticket.department || '—';
             document.getElementById('t-cat').innerText = ticket.category_name;
-            document.getElementById('t-asset').innerText = ticket.asset_tag || 'N/A';
+            document.getElementById('t-asset').innerText = ticket.asset_tag || '—';
 
             document.getElementById('t-priority').className = `badge ${getBadgeClass(ticket.priority)}`;
             document.getElementById('t-priority').innerText = ticket.priority;
 
-            document.getElementById('t-created').innerText = new Date(ticket.created_at).toLocaleString();
+            document.getElementById('t-created').innerText = new Date(ticket.created_at).toLocaleString('en-IN');
             document.getElementById('t-tech').innerText = ticket.technician_name || 'Unassigned';
 
-            // Setup update form
             const form = document.getElementById('update-ticket-form');
             if (form) {
                 document.getElementById('update-status').value = ticket.status;
@@ -170,11 +246,11 @@
                             body: JSON.stringify(data)
                         });
                         if (res.ok) {
-                            alert('Updated successfully');
-                            location.reload();
+                            showToast('Ticket updated successfully!', 'success');
+                            setTimeout(() => location.reload(), 1200);
                         } else {
                             const err = await res.json();
-                            alert(err.error || 'Error updating');
+                            showToast(err.error || 'Error updating ticket', 'error');
                         }
                     } catch (err) {
                         console.error(err);

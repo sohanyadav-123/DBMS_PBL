@@ -3,27 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Technician Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Technician Portal</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>IT Helpdesk</h3>
-            <small>Technician Portal</small>
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">🔧</div>
+                <div>
+                    <h3>IT Helpdesk</h3>
+                    <small>Technician Portal</small>
+                </div>
+            </div>
         </div>
         <ul class="sidebar-nav">
-            <li><a href="/technician_dashboard" class="active">Dashboard</a></li>
-            <li><a href="/tickets">Assigned Tickets</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li class="nav-section-label">Main</li>
+            <li><a href="/technician_dashboard" class="active"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets"><span class="nav-icon">🎫</span> Assigned Tickets</a></li>
         </ul>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn"><span>🚪</span> Sign Out</a>
+        </div>
     </div>
 
     <div class="main-content">
         <div class="topbar">
-            <h2>Technician Dashboard</h2>
-            <div>Welcome, {{ session['name'] }}</div>
+            <h2>🔧 Technician Dashboard</h2>
+            <div class="topbar-user">
+                <span class="user-dot"></span>
+                {{ session['name'] }}
+            </div>
         </div>
 
         <div class="content">
@@ -33,8 +45,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3>Recent Assigned Tickets</h3>
-                    <a href="/tickets" class="btn btn-primary" style="width:auto;">View All</a>
+                    <h3>🎫 My Assigned Tickets</h3>
+                    <a href="/tickets" class="btn btn-outline btn-sm">View All →</a>
                 </div>
                 <div class="table-responsive">
                     <table>

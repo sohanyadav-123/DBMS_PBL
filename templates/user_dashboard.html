@@ -3,27 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>User Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — User Portal</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>IT Helpdesk</h3>
-            <small>User Portal</small>
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">👤</div>
+                <div>
+                    <h3>IT Helpdesk</h3>
+                    <small>User Portal</small>
+                </div>
+            </div>
         </div>
         <ul class="sidebar-nav">
-            <li><a href="/user_dashboard" class="active">Dashboard</a></li>
-            <li><a href="/tickets">My Tickets</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li class="nav-section-label">Main</li>
+            <li><a href="/user_dashboard" class="active"><span class="nav-icon">⚡</span> Dashboard</a></li>
+            <li><a href="/tickets"><span class="nav-icon">🎫</span> My Tickets</a></li>
         </ul>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn"><span>🚪</span> Sign Out</a>
+        </div>
     </div>
 
     <div class="main-content">
         <div class="topbar">
-            <h2>User Dashboard</h2>
-            <div>Welcome, {{ session['name'] }}</div>
+            <h2>👤 My Dashboard</h2>
+            <div class="topbar-user">
+                <span class="user-dot"></span>
+                {{ session['name'] }}
+            </div>
         </div>
 
         <div class="content">
@@ -33,11 +45,10 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3>Quick Actions</h3>
+                    <h3>⚡ Quick Actions</h3>
                 </div>
-                <div style="padding: 1.5rem;">
-                    <a href="/tickets" class="btn btn-primary" style="width:auto; margin-right:1rem;">View My
-                        Tickets</a>
+                <div class="card-body">
+                    <a href="/tickets" class="btn btn-primary" style="width:auto;">🎫 Submit a Ticket</a>
                 </div>
             </div>
         </div>
