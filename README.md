@@ -250,7 +250,8 @@ DBMS_pbl/
 │   └── IT_Helpdesk_Asset_DBMS_0111.pptx            # Presentation 1: System overview & requirements
 ├── Presentation-II/
 │   └── DBMS_ER_Schema_Query_Presentation_0222.pptx # Presentation 2: ER schema & SQL queries
-├── Presentation-III/                               # Presentation 3 (final demonstration slides)
+├── Presentation-III/
+│   └── DBMS_presentation_333pptx.pptx              # Presentation 3 (final demonstration slides)
 ├── Project-Report/                                 # Final DBMS project report & documentation
 ├── app.py                                          # Flask application — all routes and API endpoints
 ├── database.sql                                    # Database schema and sample data
@@ -296,7 +297,7 @@ DBMS_pbl/
 |---|---|
 | `Presentation-I/` | **Presentation 1:** System overview, problem statement, user roles, system architecture (`IT_Helpdesk_Asset_DBMS_0111.pptx`) |
 | `Presentation-II/` | **Presentation 2:** Entity-Relationship (ER) model, schema design, normalization, SQL queries (`DBMS_ER_Schema_Query_Presentation_0222.pptx`) |
-| `Presentation-III/` | **Presentation 3:** Final project presentation and live demonstration |
+| `Presentation-III/` | **Presentation 3:** Final project presentation and live demonstration (`DBMS_presentation_333pptx.pptx`) |
 | `Project-Report/` | Complete project documentation and final report |
 
 ---
