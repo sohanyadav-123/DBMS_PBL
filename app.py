@@ -188,7 +188,7 @@ def api_dashboard_stats():
         stats['assets_maintenance'] = asset_status.get('Maintenance', 0)
         
     elif role == 'technician':
-        cursor.execute("SELECT status, COUNT(*) as count FROM tickets WHERE technician_id = %s GROUP BY status", (user_id,))
+        cursor.execute("SELECT status, COUNT(*) as count FROM tickets WHERE technician_id = %s OR technician_id IS NULL GROUP BY status", (user_id,))
         ticket_status = {row['status']: row['count'] for row in cursor.fetchall()}
         stats['assigned_tickets'] = sum(ticket_status.values())
         stats['open_tickets'] = ticket_status.get('Open', 0)
@@ -232,7 +232,7 @@ def api_tickets():
             query += " WHERE t.user_id = %s ORDER BY t.created_at DESC"
             cursor.execute(query, (user_id,))
         elif role == 'technician':
-            query += " WHERE t.technician_id = %s ORDER BY t.created_at DESC"
+            query += " WHERE t.technician_id = %s OR t.technician_id IS NULL ORDER BY t.created_at DESC"
             cursor.execute(query, (user_id,))
         else:
             query += " ORDER BY t.created_at DESC"
